@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/dev_modeTextView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telthar commands:"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/dev_modeTextView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enum:"/>
+    <EditText
+        android:id="@+id/dev_modeActionID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Int"
+        android:inputType="number"
+        android:minHeight="48dp" />
+    <TextView
+        android:id="@+id/dev_modeTextView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Args:"/>
+    <EditText
+        android:id="@+id/dev_modeArgs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="String"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD ETX SIGN"
+        android:onClick="ETXSign"/>
+</LinearLayout>
