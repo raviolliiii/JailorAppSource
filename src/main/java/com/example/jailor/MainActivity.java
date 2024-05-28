@@ -20,6 +20,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -49,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences myPrefs = this.getSharedPreferences("data", MODE_PRIVATE);
 
+        //Device choice setup
+        SharedPreferences myPrefs = this.getSharedPreferences("data", MODE_PRIVATE);
         List<Device> devices = new ArrayList<>();
         SharedPreferences.Editor prefsEditor = myPrefs.edit();
         Gson gson = new Gson();
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Spinner selectDevice = (Spinner)findViewById(R.id.selectDevice);
-        ArrayAdapter<Device> deviceAdapter = new ArrayAdapter<Device>(this, android.R.layout.simple_spinner_dropdown_item, devices);
+        ArrayAdapter<Device> deviceAdapter = new ArrayAdapter<Device>(this, android.R.layout.simple_spinner_dropdown_item,  devices);
         selectDevice.setAdapter(deviceAdapter);
 
         selectDevice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -74,23 +77,48 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 deviceIP = ((Device)selectDevice.getSelectedItem()).getIP();
                 deviceID = ((Device)selectDevice.getSelectedItem()).getName();
+                ((ImageButton)findViewById(R.id.editDeviceButton)).setVisibility(View.VISIBLE);
+                ((ImageButton)findViewById(R.id.addDeviceButton)).setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        0.45f
+                ));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 deviceIP = "";
                 deviceID = "";
+                ((ImageButton)findViewById(R.id.editDeviceButton)).setVisibility(View.GONE);
+                ((ImageButton)findViewById(R.id.addDeviceButton)).setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        0.9f
+                ));
             }
         });
 
-        //addDeviceButton setup
-        Button addBtn = (Button)findViewById(R.id.addDeviceButton);
+        //addDeviceButton && editDeviceButton setup
+        ImageButton addBtn = (ImageButton)findViewById(R.id.addDeviceButton);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), Add_Device.class));
             }
         });
+
+        ImageButton editBtn = (ImageButton)findViewById(R.id.editDeviceButton);
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent editIntent = new Intent(getApplicationContext(), Edit_Device.class);
+                editIntent.putExtra("device", selectDevice.getSelectedItemPosition());
+                startActivity(editIntent);
+            }
+        });
+
+        if(selectDevice.isSelected()) editBtn.setVisibility(View.VISIBLE);
+        else editBtn.setVisibility(View.GONE);
 
         //Action choice setup
         Spinner selectAction = findViewById(R.id.selectAction);

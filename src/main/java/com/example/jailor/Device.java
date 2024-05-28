@@ -30,7 +30,7 @@ public class Device {
 
     @Override
     public String toString() {
-        return this.Name + " " + this.IP; // What to display in the Spinner list.
+        return this.Name; // What to display in the Spinner list.
     }
 
 }

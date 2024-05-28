@@ -26,6 +26,7 @@ public class Add_Device extends AppCompatActivity {
         setContentView(R.layout.activity_add_device);
         SharedPreferences myPrefs = this.getSharedPreferences("data", MODE_PRIVATE);
 
+        Log.e("test", "Add");
         //addDeviceCancel setup
         Button cancelBtn = (Button)findViewById(R.id.addDeviceCancel);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,17 +65,6 @@ public class Add_Device extends AppCompatActivity {
 
                 prefsEditor.commit();
 
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
-
-        Button clearBtn = (Button)findViewById(R.id.addDeviceClear);
-        clearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor prefsEditor = myPrefs.edit();
-                prefsEditor.clear();
-                prefsEditor.apply();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });

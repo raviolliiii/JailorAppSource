@@ -7,7 +7,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CREATE NEW DEVICE:"
+        android:text="EDIT DEVICE:"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -54,13 +54,21 @@
         android:minHeight="48dp" />
 
     <Button
-        android:id="@+id/addDeviceConfirm"
+        android:id="@+id/editDeviceConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CONFIRM"
         android:onClick="onClick"/>
+
     <Button
-        android:id="@+id/addDeviceCancel"
+        android:id="@+id/editDeviceRemove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REMOVE"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/editDeviceCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CANCEL"

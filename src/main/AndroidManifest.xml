@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Jailor"
         tools:targetApi="31">
         <activity
+            android:name=".Edit_Device"
+            android:exported="false" />
+        <activity
             android:name=".Add_Device"
             android:exported="false" />
         <activity
